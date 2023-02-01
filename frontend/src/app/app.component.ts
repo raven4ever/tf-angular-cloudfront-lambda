@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { BooksService } from './books.service';
+import { Book } from './utils';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +10,15 @@ import { BooksService } from './books.service';
   templateUrl: 'app.component.html'
 })
 export class AppComponent implements OnInit {
+  dataSource: Book[] = [];
 
   constructor(private booksService: BooksService, private title: Title) { }
 
   ngOnInit() {
     this.title.setTitle(environment.title);
-  }
 
-  dataSource = this.booksService.getElements();
+    this.booksService.getElements().subscribe((data) => {
+      this.dataSource = data;
+    })
+  }
 }
