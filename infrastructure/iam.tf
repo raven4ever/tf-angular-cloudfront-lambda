@@ -9,5 +9,5 @@ resource "aws_iam_role" "put_cw_role" {
 resource "aws_iam_role_policy" "put_cw_role_policy" {
   name_prefix = format("%s-policy", var.put_cw_role_name)
   role        = aws_iam_role.put_cw_role.id
-  policy      = data.aws_iam_policy_document.cw_role_permissions_policy.json
+  policy      = data.aws_iam_policy_document.lambda_role_permissions_policy.json
 }
