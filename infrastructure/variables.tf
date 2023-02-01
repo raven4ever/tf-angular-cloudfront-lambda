@@ -16,6 +16,12 @@ variable "api_stage_path" {
   default     = "books"
 }
 
+variable "api_stage_name" {
+  description = "Name of the API GW stage"
+  type        = string
+  default     = "prod"
+}
+
 variable "lambda_function_name" {
   description = "Name of the Lambda function to be created"
   type        = string
