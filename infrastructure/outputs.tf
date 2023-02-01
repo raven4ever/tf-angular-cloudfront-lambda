@@ -5,5 +5,5 @@ output "website_url" {
 
 output "lambda_backend_url" {
   description = "URL to access the Lambda backend"
-  value       = format("%s/%s", aws_apigatewayv2_stage.apigw_stage.invoke_url, var.api_stage_path)
+  value       = locals.backend_url
 }
