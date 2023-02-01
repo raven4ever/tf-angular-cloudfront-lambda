@@ -4,10 +4,10 @@
   <p-table [value]="dataSource">
     <ng-template pTemplate="header">
       <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Genre</th>
-        <th>Author</th>
+        <th pSortableColumn="id">ID <p-sortIcon field="id"/></th>
+        <th pSortableColumn="name">Name <p-sortIcon field="name"/></th>
+        <th pSortableColumn="genre">Genre <p-sortIcon field="genre"/></th>
+        <th pSortableColumn="author">Author <p-sortIcon field="author"/></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-product>
