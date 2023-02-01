@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Book } from './utils';
 
@@ -12,7 +13,7 @@ const ELEMENT_DATA: Book[] = [
 })
 export class BooksService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getElements() {
     return ELEMENT_DATA;

@@ -1,8 +1,8 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { TableModule } from 'primeng/table';
-
 import { AppComponent } from './app.component';
 import { BooksService } from './books.service';
 
@@ -14,7 +14,8 @@ import { BooksService } from './books.service';
     BrowserModule,
     FormsModule,
     TableModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [BooksService, Title],
   bootstrap: [AppComponent]
