@@ -4,6 +4,12 @@ variable "s3_bucket_name" {
   default     = "000-super-important-content-999"
 }
 
+variable "frontend_artefacts_location" {
+  description = "Path to frontend application artefacts"
+  type        = string
+  default     = "../frontend/dist/frontend"
+}
+
 variable "tags" {
   description = "Tags to be applied to all created resources"
   type        = map(string)
