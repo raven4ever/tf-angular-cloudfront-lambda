@@ -10,13 +10,13 @@ variable "frontend_artefacts_location" {
   default     = "../frontend/dist/frontend"
 }
 
-variable "put_cw_role_name" {
+variable "lambda_role_name" {
   description = "Name of the role to be used to put logs into CloudWatch"
   type        = string
-  default     = "lambda-role"
+  default     = "lambda-backend-role"
 }
 
-variable "put_cw_role_boundary" {
+variable "lambda_role_boundary" {
   description = "Name of the boundary (if applicable) to be applied to the CloudWatch role"
   type        = string
   default     = ""

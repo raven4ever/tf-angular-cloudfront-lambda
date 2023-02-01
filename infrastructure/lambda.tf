@@ -1,7 +1,7 @@
-resource "aws_lambda_function" "terraform_lambda_func" {
+resource "aws_lambda_function" "backend_lambda" {
   filename      = "${path.module}/lambda.zip"
   function_name = "SuperDuperUberLambda"
-  role          = aws_iam_role.put_cw_role.arn
+  role          = aws_iam_role.lambda_role.arn
   handler       = "index.lambda_handler"
   runtime       = "python3.9"
 }

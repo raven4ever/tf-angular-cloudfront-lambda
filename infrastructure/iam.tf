@@ -1,13 +1,12 @@
-# Create a IAM role to be used by CloudTrail to upload the logs to CloudWatch
-resource "aws_iam_role" "put_cw_role" {
-  name                 = var.put_cw_role_name
+resource "aws_iam_role" "lambda_role" {
+  name                 = var.lambda_role_name
   assume_role_policy   = data.aws_iam_policy_document.lambda_role_assume_policy.json
-  permissions_boundary = var.put_cw_role_boundary == "" ? "" : data.aws_iam_policy.cw_role_boundary_policy[0].arn
+  permissions_boundary = var.lambda_role_boundary == "" ? "" : data.aws_iam_policy.lambda_role_boundary_policy[0].arn
   tags                 = var.tags
 }
 
-resource "aws_iam_role_policy" "put_cw_role_policy" {
-  name_prefix = format("%s-policy", var.put_cw_role_name)
-  role        = aws_iam_role.put_cw_role.id
+resource "aws_iam_role_policy" "lambda_role_policy" {
+  name_prefix = format("%s-policy", var.lambda_role_name)
+  role        = aws_iam_role.lambda_role.id
   policy      = data.aws_iam_policy_document.lambda_role_permissions_policy.json
 }
