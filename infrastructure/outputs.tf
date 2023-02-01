@@ -5,5 +5,5 @@ output "website_url" {
 
 output "lambda_backend_url" {
   description = "URL to access the Lambda backend"
-  value       = locals.backend_url
+  value       = local.backend_url
 }
