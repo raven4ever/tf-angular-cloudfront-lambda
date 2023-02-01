@@ -15,3 +15,30 @@ data "aws_iam_policy_document" "storage_bucket_policy_document" {
     }
   }
 }
+
+data "aws_iam_policy_document" "lambda_role_assume_policy" {
+  statement {
+    actions = ["sts:AssumeRole"]
+
+    principals {
+      type        = "Service"
+      identifiers = ["lambda.amazonaws.com"]
+    }
+  }
+}
+
+data "aws_iam_policy_document" "lambda_role_permissions_policy" {
+  statement {
+    effect  = "Allow"
+    actions = ["logs:CreateLogGroup", "logs:CreateLogStream", "logs:PutLogEvents"]
+    resources = [
+      "arn:aws:logs:*:*:*"
+    ]
+  }
+}
+
+data "archive_file" "lambda_zip" {
+  type        = "zip"
+  source_dir  = "../backend"
+  output_path = "${path.module}/lambda.zip"
+}

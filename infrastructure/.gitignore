@@ -31,3 +31,4 @@ override.tf.json
 .terraform*
 
 test.pem
+lambda.zip
