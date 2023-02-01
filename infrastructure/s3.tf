@@ -35,3 +35,15 @@ resource "aws_s3_bucket_policy" "storage_bucket_policy" {
   bucket = aws_s3_bucket.storage_bucket.id
   policy = data.aws_iam_policy_document.storage_bucket_policy_document.json
 }
+
+# Enable S3 website
+resource "aws_s3_bucket_website_configuration" "storage_bucket_website" {
+  bucket = aws_s3_bucket.storage_bucket.id
+  index_document {
+    suffix = "index.html"
+  }
+
+  error_document {
+    key = "index.html"
+  }
+}
