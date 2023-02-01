@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { TableModule } from 'primeng/table';
 
 import { AppComponent } from './app.component';
@@ -16,7 +16,7 @@ import { BooksService } from './books.service';
     TableModule,
     FormsModule
   ],
-  providers: [BooksService],
+  providers: [BooksService, Title],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
