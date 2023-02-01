@@ -7,4 +7,8 @@ resource "aws_s3_object" "storage_bucket_demo_content" {
   content_type = lookup(tomap(local.mime_types), element(split(".", each.value), length(split(".", each.value)) - 1))
   source       = each.value
   etag         = filemd5(each.value)
+
+  depends_on = [
+    null_resource.build_frontend
+  ]
 }
