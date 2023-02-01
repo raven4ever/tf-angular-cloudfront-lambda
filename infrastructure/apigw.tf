@@ -1,12 +1,11 @@
 resource "aws_apigatewayv2_api" "lambda" {
-  name          = "serverless_lambda_gw"
+  name          = format("%s-apigw", var.lambda_function_name)
   protocol_type = "HTTP"
 }
 
 resource "aws_apigatewayv2_stage" "lambda" {
-  api_id = aws_apigatewayv2_api.lambda.id
-
-  name        = "serverless_lambda_stage"
+  api_id      = aws_apigatewayv2_api.lambda.id
+  name        = "prod"
   auto_deploy = true
 
   access_log_settings {
@@ -39,13 +38,12 @@ resource "aws_apigatewayv2_integration" "hello_world" {
 resource "aws_apigatewayv2_route" "hello_world" {
   api_id = aws_apigatewayv2_api.lambda.id
 
-  route_key = "GET /books"
+  route_key = format("GET /%s",var.api_stage_path)
   target    = "integrations/${aws_apigatewayv2_integration.hello_world.id}"
 }
 
 resource "aws_cloudwatch_log_group" "api_gw" {
-  name = "/aws/api_gw/${aws_apigatewayv2_api.lambda.name}"
-
+  name              = format("/aws/api_gw/%s", aws_apigatewayv2_api.lambda.name)
   retention_in_days = 30
 }
 

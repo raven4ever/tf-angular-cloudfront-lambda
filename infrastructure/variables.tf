@@ -1,13 +1,25 @@
-variable "s3_bucket_name" {
-  description = "Name of the bucket where the content is stored"
+variable "website_bucket_name" {
+  description = "Name of the bucket where the Angular content is stored"
   type        = string
-  default     = "000-super-important-content-999"
+  default     = "000-books-angular-site-999"
 }
 
 variable "frontend_artefacts_location" {
   description = "Path to frontend application artefacts"
   type        = string
   default     = "../frontend/dist/frontend"
+}
+
+variable "api_stage_path" {
+  description = "Stage path to access the backend"
+  type        = string
+  default     = "books"
+}
+
+variable "lambda_function_name" {
+  description = "Name of the Lambda function to be created"
+  type        = string
+  default     = "books-backend-lambda"
 }
 
 variable "lambda_role_name" {

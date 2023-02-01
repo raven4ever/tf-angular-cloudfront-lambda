@@ -1,8 +1,8 @@
-data "aws_iam_policy_document" "storage_bucket_policy_document" {
+data "aws_iam_policy_document" "website_bucket_policy_document" {
   statement {
     sid       = "AllowOACAccessToBucketObjects"
     effect    = "Allow"
-    resources = ["${aws_s3_bucket.storage_bucket.arn}/*"]
+    resources = ["${aws_s3_bucket.website_bucket.arn}/*"]
     actions   = ["s3:GetObject"]
     principals {
       type        = "Service"
@@ -11,7 +11,7 @@ data "aws_iam_policy_document" "storage_bucket_policy_document" {
     condition {
       test     = "StringEquals"
       variable = "AWS:SourceArn"
-      values   = [aws_cloudfront_distribution.storage_bucket_distribution.arn]
+      values   = [aws_cloudfront_distribution.website_bucket_distribution.arn]
     }
   }
 }
