@@ -4,6 +4,6 @@ resource "aws_s3_object" "storage_bucket_demo_content" {
 
   bucket = aws_s3_bucket.storage_bucket.id
   key    = each.value
-  source = "../frontend/dist/frontend/${each.value}"
-  etag   = filemd5("../frontend/dist/frontend/${each.value}")
+  source = "../frontend/dist/frontend/${each.value.source_path}"
+  etag   = filemd5("../frontend/dist/frontend/${each.value.source_path}")
 }
