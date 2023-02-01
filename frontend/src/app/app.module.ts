@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { TableModule } from 'primeng/table';
 
 import { AppComponent } from './app.component';
+import { BooksService } from './books.service';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import { AppComponent } from './app.component';
     TableModule,
     FormsModule
   ],
-  providers: [],
+  providers: [BooksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

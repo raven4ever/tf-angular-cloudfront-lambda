@@ -4,18 +4,18 @@
   <p-table [value]="dataSource">
     <ng-template pTemplate="header">
       <tr>
-        <th>Position</th>
+        <th>ID</th>
         <th>Name</th>
-        <th>Weight</th>
-        <th>Symbol</th>
+        <th>Genre</th>
+        <th>Author</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-product>
       <tr>
-        <td>{{ product.position }}</td>
+        <td>{{ product.id }}</td>
         <td>{{ product.name }}</td>
-        <td>{{ product.weight }}</td>
-        <td>{{ product.symbol }}</td>
+        <td>{{ product.genre }}</td>
+        <td>{{ product.author }}</td>
       </tr>
     </ng-template>
   </p-table>
