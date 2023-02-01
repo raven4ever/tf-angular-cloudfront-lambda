@@ -1,6 +1,12 @@
 resource "aws_apigatewayv2_api" "apigw_api" {
   name          = format("%s-apigw", var.lambda_function_name)
   protocol_type = "HTTP"
+
+  cors_configuration {
+    allow_origins = [local.website_url]
+    allow_methods = ["GET"]
+  }
+
 }
 
 resource "aws_apigatewayv2_stage" "apigw_stage" {

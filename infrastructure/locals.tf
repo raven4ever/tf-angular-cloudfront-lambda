@@ -1,4 +1,5 @@
 locals {
+  website_url = format("https://%s", aws_cloudfront_distribution.website_bucket_distribution.domain_name)
   backend_url = format("%s/%s", aws_apigatewayv2_stage.apigw_stage.invoke_url, var.api_stage_path)
 
   mime_types = {

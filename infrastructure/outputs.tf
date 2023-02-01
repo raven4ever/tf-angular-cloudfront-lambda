@@ -1,6 +1,6 @@
 output "website_url" {
   description = "URL to access the CloudFront distribution"
-  value       = format("http://%s", aws_cloudfront_distribution.website_bucket_distribution.domain_name)
+  value       = local.website_url
 }
 
 output "lambda_backend_url" {
