@@ -16,6 +16,11 @@ data "aws_iam_policy_document" "storage_bucket_policy_document" {
   }
 }
 
+data "aws_iam_policy" "cw_role_boundary_policy" {
+  count = var.put_cw_role_boundary == "" ? 0 : 1
+  name  = var.put_cw_role_boundary
+}
+
 data "aws_iam_policy_document" "lambda_role_assume_policy" {
   statement {
     actions = ["sts:AssumeRole"]
