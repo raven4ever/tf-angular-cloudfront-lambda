@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { TableModule } from 'primeng/table';
 
 import { AppComponent } from './app.component';
 
@@ -8,7 +10,10 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    TableModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
