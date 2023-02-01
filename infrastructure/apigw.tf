@@ -53,5 +53,5 @@ resource "aws_lambda_permission" "apigw_lambda_permissions" {
   function_name = aws_lambda_function.backend_lambda.function_name
   principal     = "apigateway.amazonaws.com"
 
-  source_arn = "${aws_apigatewayv2_api.lambda.execution_arn}/*/*"
+  source_arn = "${aws_apigatewayv2_api.apigw_api.execution_arn}/*/*"
 }
