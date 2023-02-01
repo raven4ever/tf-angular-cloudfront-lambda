@@ -5,5 +5,5 @@ output "storage_bucket" {
 
 output "distribution_url" {
   description = "URL to access the CloudFront distribution"
-  value       = local.distribution_https_url
+  value       = format("http://%s", aws_cloudfront_distribution.storage_bucket_distribution.domain_name)
 }
