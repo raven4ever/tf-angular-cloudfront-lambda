@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  builder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint: "cp /amazon-neptune-tools/neptune-python-utils/target/neptune_python_utils_lambda_layer.zip /target/neptune_python_utils_lambda_layer.zip"
+    volumes:
+      - ./target:/target/
