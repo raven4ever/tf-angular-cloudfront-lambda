@@ -33,10 +33,23 @@ data "aws_iam_policy_document" "lambda_role_assume_policy" {
 
 data "aws_iam_policy_document" "lambda_role_permissions_policy" {
   statement {
-    effect  = "Allow"
-    actions = ["ec2:CreateNetworkInterface", "ec2:DescribeNetworkInterfaces", "ec2:DeleteNetworkInterface"]
+    effect = "Allow"
+    actions = [
+      "ec2:CreateNetworkInterface",
+      "ec2:DescribeNetworkInterfaces",
+      "ec2:DeleteNetworkInterface"
+    ]
     resources = [
       "*"
+    ]
+  }
+  statement {
+    effect = "Allow"
+    actions = [
+      "neptune-db:*"
+    ]
+    resources = [
+      aws_neptune_cluster.default.arn
     ]
   }
 }
