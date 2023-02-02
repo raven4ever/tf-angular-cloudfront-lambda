@@ -6,7 +6,7 @@ resource "aws_cloudfront_distribution" "website_bucket_distribution" {
 
   origin {
     origin_id   = format("%s-origin-id", var.website_bucket_name)
-    domain_name = aws_s3_bucket_website_configuration.website_bucket_website.website_domain
+    domain_name = aws_s3_bucket_website_configuration.website_bucket_website.website_endpoint
 
     custom_origin_config {
       http_port              = "80"
