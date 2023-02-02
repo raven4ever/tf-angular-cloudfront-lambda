@@ -1,3 +1,9 @@
+variable "vpc_id" {
+  description = "VPC ID where the Neptune Cluster will be deployed"
+  type        = string
+  default     = ""
+}
+
 variable "website_bucket_name" {
   description = "Name of the bucket where the Angular content is stored"
   type        = string

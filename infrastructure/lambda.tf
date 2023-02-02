@@ -10,4 +10,14 @@ resource "aws_lambda_function" "backend_lambda" {
   role          = aws_iam_role.lambda_role.arn
   handler       = "main.lambda_handler"
   runtime       = "python3.9"
+
+  environment {
+    variables = {
+      "NEPTUNE_URL" = aws_neptune_cluster.default.endpoint
+    }
+  }
+
+  vpc_config {
+    subnet_ids = [for s in data.aws_subnet.subnet_ids : s.id]
+  }
 }
