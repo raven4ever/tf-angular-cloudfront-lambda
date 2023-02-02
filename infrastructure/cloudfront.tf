@@ -17,6 +17,13 @@ resource "aws_cloudfront_distribution" "website_bucket_distribution" {
     origin_id                = format("%s-origin-id", var.website_bucket_name)
     domain_name              = aws_s3_bucket_website_configuration.website_bucket_website.website_endpoint
     origin_access_control_id = aws_cloudfront_origin_access_control.website_bucket_oac.id
+
+    custom_origin_config {
+      http_port              = "80"
+      https_port             = "443"
+      origin_protocol_policy = "http-only"
+      origin_ssl_protocols   = ["TLSv1", "TLSv1.1", "TLSv1.2"]
+    }
   }
 
   default_cache_behavior {
