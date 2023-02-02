@@ -33,4 +33,3 @@ override.tf.json
 test.pem
 lambda.zip
 frontend.zip
-target
