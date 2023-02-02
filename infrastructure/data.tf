@@ -5,13 +5,10 @@ data "aws_iam_policy_document" "website_bucket_policy_document" {
     resources = ["${aws_s3_bucket.website_bucket.arn}/*"]
     actions   = ["s3:GetObject"]
     principals {
-      type        = "Service"
-      identifiers = ["cloudfront.amazonaws.com"]
-    }
-    condition {
-      test     = "StringEquals"
-      variable = "AWS:SourceArn"
-      values   = [aws_cloudfront_distribution.website_bucket_distribution.arn]
+      type = "AWS"
+      identifiers = [
+        aws_cloudfront_origin_access_identity.origin_access_identity.iam_arn
+      ]
     }
   }
 }

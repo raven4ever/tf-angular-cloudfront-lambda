@@ -7,6 +7,11 @@ resource "aws_cloudfront_origin_access_control" "website_bucket_oac" {
   signing_protocol                  = "sigv4"
 }
 
+resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {
+  comment = aws_s3_bucket_website_configuration.website_bucket_website.website_endpoint
+}
+
+
 # Create CloudFront distribution
 resource "aws_cloudfront_distribution" "website_bucket_distribution" {
   enabled             = true
@@ -14,15 +19,10 @@ resource "aws_cloudfront_distribution" "website_bucket_distribution" {
   tags                = var.tags
 
   origin {
-    origin_id                = format("%s-origin-id", var.website_bucket_name)
-    domain_name              = aws_s3_bucket_website_configuration.website_bucket_website.website_endpoint
-    origin_access_control_id = aws_cloudfront_origin_access_control.website_bucket_oac.id
-
-    custom_origin_config {
-      http_port              = "80"
-      https_port             = "443"
-      origin_protocol_policy = "http-only"
-      origin_ssl_protocols   = ["TLSv1", "TLSv1.1", "TLSv1.2"]
+    origin_id   = format("%s-origin-id", var.website_bucket_name)
+    domain_name = aws_s3_bucket_website_configuration.website_bucket_website.website_endpoint
+    s3_origin_config {
+      origin_access_identity = aws_cloudfront_origin_access_identity.origin_access_identity.cloudfront_access_identity_path
     }
   }
 
