@@ -7,6 +7,11 @@ resource "aws_neptune_cluster_parameter_group" "example" {
   family      = "neptune1.2"
   name        = "example"
   description = "neptune cluster parameter group"
+
+  parameter {
+    name  = "neptune_enable_audit_log"
+    value = 1
+  }
 }
 
 resource "aws_neptune_parameter_group" "example" {
