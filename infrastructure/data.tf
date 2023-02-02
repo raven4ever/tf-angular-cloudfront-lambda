@@ -1,5 +1,7 @@
 data "aws_region" "current" {}
 
+data "aws_caller_identity" "current" {}
+
 data "aws_iam_policy_document" "website_bucket_policy_document" {
   statement {
     sid       = "AllowOACAccessToBucketObjects"
@@ -49,7 +51,11 @@ data "aws_iam_policy_document" "lambda_role_permissions_policy" {
       "neptune-db:*"
     ]
     resources = [
-      aws_neptune_cluster.default.arn
+      format("arn:aws:neptune-db:%s:%s:%s/*",
+        data.aws_region.current.name,
+        data.aws_caller_identity.current.account_id,
+        aws_neptune_cluster.default.cluster_resource_id
+      )
     ]
   }
 }
