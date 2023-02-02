@@ -20,7 +20,7 @@ resource "aws_cloudfront_distribution" "website_bucket_distribution" {
 
   origin {
     origin_id   = format("%s-origin-id", var.website_bucket_name)
-    domain_name = aws_s3_bucket_website_configuration.website_bucket_website.website_endpoint
+    domain_name = aws_s3_bucket.website_bucket_name.bucket_regional_domain_name
     s3_origin_config {
       origin_access_identity = aws_cloudfront_origin_access_identity.origin_access_identity.cloudfront_access_identity_path
     }
