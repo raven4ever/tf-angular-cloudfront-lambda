@@ -39,11 +39,9 @@ data "aws_iam_policy_document" "lambda_role_permissions_policy" {
   }
 }
 
-data "aws_subnet_ids" "subnets" {
-  vpc_id = var.vpc_id
-}
-
-data "aws_subnet" "subnet_ids" {
-  for_each = toset(data.aws_subnets.default.ids)
-  id       = each.value
+data "aws_subnets" "subnets" {
+  filter {
+    name   = "vpc-id"
+    values = [var.vpc_id]
+  }
 }

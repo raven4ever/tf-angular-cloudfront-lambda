@@ -18,6 +18,7 @@ resource "aws_lambda_function" "backend_lambda" {
   }
 
   vpc_config {
-    subnet_ids = [for s in data.aws_subnet.subnet_ids : s.id]
+    subnet_ids         = data.aws_subnets.subnets.ids
+    security_group_ids = [aws_security_group.neptune_sg.id]
   }
 }
