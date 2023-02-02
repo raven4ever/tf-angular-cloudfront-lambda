@@ -27,7 +27,7 @@ REGION_NAME = os.getenv('REGION_NAME')
 
 endpoints = Endpoints(neptune_endpoint=NEPTUNE_URL,
                       neptune_port=NEPTUNE_PORT,
-                      region=REGION_NAME)
+                      region_name=REGION_NAME)
 
 GremlinUtils.init_statics(globals())
 
