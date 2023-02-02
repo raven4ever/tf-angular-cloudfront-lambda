@@ -1,5 +1,11 @@
-import os
 import json
+import os
+
+from neptune_python_utils.batch_utils import BatchUtils
+from neptune_python_utils.endpoints import Endpoints
+from neptune_python_utils.gremlin_utils import GremlinUtils
+
+from data import edges, vertices
 
 BOOK_LIST = [
     {'id': 1, 'name': 'The Count of Monte Cristo',
@@ -17,7 +23,38 @@ BOOK_LIST = [
 REGION_NAME = os.getenv('REGION_NAME')
 NEPTUNE_URL = os.getenv('NEPTUNE_URL')
 NEPTUNE_PORT = os.getenv('NEPTUNE_PORT')
-INITIAL_DATA_LOADED = os.getenv("INITIAL_DATA_LOADED", "False") == "True"
+REGION_NAME = os.getenv('REGION_NAME')
+
+endpoints = Endpoints(neptune_endpoint=NEPTUNE_URL,
+                      neptune_port=NEPTUNE_PORT,
+                      region=REGION_NAME)
+
+GremlinUtils.init_statics(globals())
+
+gremlin_utils = GremlinUtils(endpoints)
+batch = BatchUtils(endpoints)
+
+conn = None
+
+try:
+    conn = gremlin_utils.remote_connection(ssl=False)
+    g = gremlin_utils.traversal_source(connection=conn)
+
+    # print to test connection
+    print(g.V().limit(10).valueMap().toList())
+
+    # batch insert vertices
+    batch.upsert_vertices(batch_size=3, rows=vertices)
+
+    # batch insert edges
+    batch.upsert_edges(batch_size=3, rows=edges,
+                       on_upsert='replaceAllProperties')
+
+    # print to test upload
+    print(g.V().limit(100).valueMap().toList())
+finally:
+    if conn:
+        conn.close()
 
 
 def lambda_handler(event, context):
