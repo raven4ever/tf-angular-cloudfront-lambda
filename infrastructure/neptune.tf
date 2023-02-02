@@ -29,7 +29,7 @@ resource "aws_neptune_cluster" "default" {
 }
 
 resource "aws_neptune_cluster_instance" "example" {
-  count                        = 2
+  count                        = 1
   cluster_identifier           = aws_neptune_cluster.default.id
   engine                       = "neptune"
   instance_class               = "db.t3.medium"

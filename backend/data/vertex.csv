@@ -1,0 +1,16 @@
+~id, name:String, ~label
+v1, "The Count of Monte Cristo", book
+v2, "Don Quixote", book
+v3, "The Exorcist", book
+v4, "The Lord of the Rings", book
+v5, "Pet Sematary", book
+v6, "Carrie", book
+v7, "Adventure Fiction", genre
+v8, "Satire", genre
+v9, "Horror", genre
+v10, "Fantasy Fiction", genre
+v11, "Alexandre Dumas", author
+v12, "Miguel de Cervantes", author
+v13, "William Peter Blatty", author
+v14, "J. R. R. Tolkien", author
+v15, "Stephen King", author

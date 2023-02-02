@@ -13,7 +13,9 @@ resource "aws_lambda_function" "backend_lambda" {
 
   environment {
     variables = {
-      "NEPTUNE_URL" = aws_neptune_cluster.default.endpoint
+      NEPTUNE_URL         = aws_neptune_cluster.default.endpoint
+      NEPTUNE_PORT        = "8182"
+      INITIAL_DATA_LOADED = "False"
     }
   }
 
