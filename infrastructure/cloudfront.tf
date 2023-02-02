@@ -13,9 +13,9 @@ resource "aws_cloudfront_distribution" "website_bucket_distribution" {
     origin_id   = format("%s-origin-id", var.website_bucket_name)
     domain_name = aws_s3_bucket.website_bucket.bucket_regional_domain_name
 
-   s3_origin_config {
-     origin_access_identity = aws_cloudfront_origin_access_identity.website_bucket_oai.cloudfront_access_identity_path
-   }
+    s3_origin_config {
+      origin_access_identity = aws_cloudfront_origin_access_identity.website_bucket_oai.cloudfront_access_identity_path
+    }
   }
 
   default_cache_behavior {

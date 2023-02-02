@@ -14,6 +14,7 @@ BOOK_LIST = [
     {'id': 6, 'name': 'Carrie', 'genre': 'Horror', 'author': 'Stephen King'}
 ]
 
+REGION_NAME = os.getenv('REGION_NAME')
 NEPTUNE_URL = os.getenv('NEPTUNE_URL')
 NEPTUNE_PORT = os.getenv('NEPTUNE_PORT')
 INITIAL_DATA_LOADED = os.getenv("INITIAL_DATA_LOADED", "False") == "True"
@@ -21,6 +22,7 @@ INITIAL_DATA_LOADED = os.getenv("INITIAL_DATA_LOADED", "False") == "True"
 
 def lambda_handler(event, context):
     if not INITIAL_DATA_LOADED:
+        print(REGION_NAME)
         print(NEPTUNE_URL)
         print(NEPTUNE_PORT)
         os.environ["INITIAL_DATA_LOADED"] = True

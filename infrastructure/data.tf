@@ -1,3 +1,5 @@
+data "aws_region" "current" {}
+
 data "aws_iam_policy_document" "website_bucket_policy_document" {
   statement {
     sid       = "AllowOACAccessToBucketObjects"
