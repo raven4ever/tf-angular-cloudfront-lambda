@@ -47,8 +47,7 @@ try:
     batch.upsert_vertices(batch_size=3, rows=vertices)
 
     # batch insert edges
-    batch.upsert_edges(batch_size=3, rows=edges,
-                       on_upsert='replaceAllProperties')
+    batch.upsert_edges(batch_size=3, rows=edges)
 
     # print to test upload
     print(g.V().limit(100).valueMap().toList())
@@ -58,11 +57,6 @@ finally:
 
 
 def lambda_handler(event, context):
-    if not INITIAL_DATA_LOADED:
-        print(REGION_NAME)
-        print(NEPTUNE_URL)
-        print(NEPTUNE_PORT)
-        os.environ["INITIAL_DATA_LOADED"] = True
 
     return {
         'statusCode': 200,

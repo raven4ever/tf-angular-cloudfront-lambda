@@ -26,10 +26,10 @@ edges = [
     {'~id': 'e-5', '~label': 'TYPE_OF', '~from': 'book5', '~to': 'genre3'},
     {'~id': 'e-6', '~label': 'TYPE_OF', '~from': 'book6', '~to': 'genre3'},
 
-    {'~id': 'e-', '~label': 'WRITTEN_BY', '~from': 'book1', '~to': 'author1'},
-    {'~id': 'e-', '~label': 'WRITTEN_BY', '~from': 'book2', '~to': 'author2'},
-    {'~id': 'e-', '~label': 'WRITTEN_BY', '~from': 'book3', '~to': 'author3'},
-    {'~id': 'e-', '~label': 'WRITTEN_BY', '~from': 'book4', '~to': 'author4'},
-    {'~id': 'e-', '~label': 'WRITTEN_BY', '~from': 'book5', '~to': 'author5'},
-    {'~id': 'e-', '~label': 'WRITTEN_BY', '~from': 'book6', '~to': 'author5'},
+    {'~id': 'e-7', '~label': 'WRITTEN_BY', '~from': 'book1', '~to': 'author1'},
+    {'~id': 'e-8', '~label': 'WRITTEN_BY', '~from': 'book2', '~to': 'author2'},
+    {'~id': 'e-9', '~label': 'WRITTEN_BY', '~from': 'book3', '~to': 'author3'},
+    {'~id': 'e-10', '~label': 'WRITTEN_BY', '~from': 'book4', '~to': 'author4'},
+    {'~id': 'e-11', '~label': 'WRITTEN_BY', '~from': 'book5', '~to': 'author5'},
+    {'~id': 'e-12', '~label': 'WRITTEN_BY', '~from': 'book6', '~to': 'author5'},
 ]
