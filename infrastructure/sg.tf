@@ -1,12 +1,13 @@
 resource "aws_security_group" "neptune_sg" {
   name        = "neptune-sg"
-  description = "Allow traffic"
+  description = "Allow Neptune traffic"
+  vpc_id      = var.vpc_id
 
   ingress {
-    from_port   = 8182
-    to_port     = 8182
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    from_port = 8182
+    to_port   = 8182
+    protocol  = "tcp"
+    self      = true
   }
 
   egress {

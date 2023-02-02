@@ -4,11 +4,16 @@ resource "aws_neptune_subnet_group" "default" {
 }
 
 resource "aws_neptune_cluster_parameter_group" "example" {
-  family      = "neptune1"
+  family      = "neptune1.2"
   name        = "example"
   description = "neptune cluster parameter group"
 }
 
+resource "aws_neptune_parameter_group" "example" {
+  family      = "neptune1.2"
+  name        = "example"
+  description = "neptune instance parameter group"
+}
 
 resource "aws_neptune_cluster" "default" {
   cluster_identifier                   = "neptune-cluster-demo"
@@ -24,10 +29,12 @@ resource "aws_neptune_cluster" "default" {
 }
 
 resource "aws_neptune_cluster_instance" "example" {
-  count                      = 2
-  cluster_identifier         = aws_neptune_cluster.default.id
-  engine                     = "neptune"
-  instance_class             = "db.t3.medium"
-  apply_immediately          = true
-  auto_minor_version_upgrade = true
+  count                        = 2
+  cluster_identifier           = aws_neptune_cluster.default.id
+  engine                       = "neptune"
+  instance_class               = "db.t3.medium"
+  apply_immediately            = true
+  auto_minor_version_upgrade   = true
+  neptune_parameter_group_name = aws_neptune_parameter_group.example.name
+  neptune_subnet_group_name    = aws_neptune_subnet_group.default.name
 }
