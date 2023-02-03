@@ -69,7 +69,8 @@ try:
         .addE('belongs_to').to(__.V(g3)).next()
     g.V(b6).addE('written_by').to(__.V(a5)).outV() \
         .addE('belongs_to').to(__.V(g3)).next()
-finally:
+except Exception as e:
+    print(e)
     if conn:
         conn.close()
 
@@ -90,10 +91,14 @@ def get_books_with_author_and_genre():
             'statusCode': 200,
             'body': json.dumps(q_result)
         }
-    finally:
+    except Exception as e:
         result = {
             'statusCode': 500,
-            'body': json.dumps('Error 666: Something went wrong with your query!')
+            'body': json.dumps({
+                'error': 666,
+                'message': 'Something went wrong with your query!',
+                'exception': str(e)
+            })
         }
         if conn:
             conn.close()
