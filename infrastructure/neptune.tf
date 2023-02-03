@@ -31,7 +31,7 @@ resource "aws_neptune_cluster" "default" {
   neptune_subnet_group_name            = aws_neptune_subnet_group.default.name
   neptune_cluster_parameter_group_name = aws_neptune_cluster_parameter_group.example.name
   vpc_security_group_ids               = [aws_security_group.neptune_sg.id]
-  iam_roles                            = [aws_iam_role.lambda_role.arn]
+  # iam_roles                            = [aws_iam_role.lambda_role.arn]
 }
 
 resource "aws_neptune_cluster_instance" "example" {
