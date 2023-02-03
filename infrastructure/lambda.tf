@@ -27,7 +27,7 @@ resource "aws_lambda_function" "backend_lambda" {
       NEPTUNE_URL  = aws_neptune_cluster.default.endpoint
       NEPTUNE_PORT = "8182"
       REGION_NAME  = data.aws_region.current.name
-      USE_IAM      = true
+      USE_IAM      = false
     }
   }
 
