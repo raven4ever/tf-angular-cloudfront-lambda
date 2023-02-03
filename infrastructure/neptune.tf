@@ -26,7 +26,7 @@ resource "aws_neptune_cluster" "default" {
   backup_retention_period              = 5
   preferred_backup_window              = "07:00-09:00"
   skip_final_snapshot                  = true
-  iam_database_authentication_enabled  = true
+  iam_database_authentication_enabled  = false
   apply_immediately                    = true
   neptune_subnet_group_name            = aws_neptune_subnet_group.default.name
   neptune_cluster_parameter_group_name = aws_neptune_cluster_parameter_group.example.name

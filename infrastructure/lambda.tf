@@ -2,6 +2,10 @@ data "archive_file" "lambda_zip" {
   type        = "zip"
   source_dir  = "../backend"
   output_path = "${path.module}/lambda.zip"
+  excludes = [
+    "../backend/gremlin_tests/*",
+    "../backend/venv/*"
+  ]
 }
 
 resource "aws_lambda_layer_version" "lambda_layer" {
@@ -20,10 +24,10 @@ resource "aws_lambda_function" "backend_lambda" {
 
   environment {
     variables = {
-      NEPTUNE_URL         = aws_neptune_cluster.default.endpoint
-      NEPTUNE_PORT        = "8182"
-      REGION_NAME         = data.aws_region.current.name
-      USE_IAM             = true
+      NEPTUNE_URL  = aws_neptune_cluster.default.endpoint
+      NEPTUNE_PORT = "8182"
+      REGION_NAME  = data.aws_region.current.name
+      USE_IAM      = true
     }
   }
 
