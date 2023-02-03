@@ -57,18 +57,18 @@ try:
     g4 = g.addV('genre').property('name', 'Fantasy Fiction').next()
 
     print('Adding relations')
-    g.V(b1).addE('written_by').to(__.V(a1)).outV() \
-        .addE('belongs_to').to(__.V(g1)).next()
-    g.V(b2).addE('written_by').to(__.V(a2)).outV() \
-        .addE('belongs_to').to(__.V(g2)).next()
-    g.V(b3).addE('written_by').to(__.V(a3)).outV() \
-        .addE('belongs_to').to(__.V(g3)).next()
-    g.V(b4).addE('written_by').to(__.V(a4)).outV() \
-        .addE('belongs_to').to(__.V(g4)).next()
-    g.V(b5).addE('written_by').to(__.V(a5)).outV() \
-        .addE('belongs_to').to(__.V(g3)).next()
-    g.V(b6).addE('written_by').to(__.V(a5)).outV() \
-        .addE('belongs_to').to(__.V(g3)).next()
+    g.V(b1).addE('WRITTEN_BY').to(__.V(a1)).outV() \
+        .addE('BELONGS_TO').to(__.V(g1)).next()
+    g.V(b2).addE('WRITTEN_BY').to(__.V(a2)).outV() \
+        .addE('BELONGS_TO').to(__.V(g2)).next()
+    g.V(b3).addE('WRITTEN_BY').to(__.V(a3)).outV() \
+        .addE('BELONGS_TO').to(__.V(g3)).next()
+    g.V(b4).addE('WRITTEN_BY').to(__.V(a4)).outV() \
+        .addE('BELONGS_TO').to(__.V(g4)).next()
+    g.V(b5).addE('WRITTEN_BY').to(__.V(a5)).outV() \
+        .addE('BELONGS_TO').to(__.V(g3)).next()
+    g.V(b6).addE('WRITTEN_BY').to(__.V(a5)).outV() \
+        .addE('BELONGS_TO').to(__.V(g3)).next()
 except Exception as e:
     print(e)
     if conn:
@@ -84,8 +84,8 @@ def get_books_with_author_and_genre():
             .project('name', 'id', 'genre', 'author') \
             .by('name') \
             .by(T.id) \
-            .by(__.out('belongs_to').values('name')) \
-            .by(__.out('written_by').values('name')) \
+            .by(__.out('BELONGS_TO').values('name')) \
+            .by(__.out('WRITTEN_BY').values('name')) \
             .toList()
         result = {
             'statusCode': 200,
