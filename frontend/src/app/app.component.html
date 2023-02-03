@@ -1,7 +1,6 @@
 <div class="card">
-  <h3>My Books:</h3>
-
   <p-table [value]="dataSource" styleClass="p-datatable-striped">
+    <ng-template pTemplate="caption"> My Books </ng-template>
     <ng-template pTemplate="header">
       <tr>
         <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon></th>
